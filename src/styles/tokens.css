@@ -1,0 +1,70 @@
+:root {
+  /* Preto e branco: toda cor da interface sai destas escalas. A cor da arte fica nas imagens. */
+  --black: #000;
+  --ink-950: #050506;
+  --ink-900: #0b0b0d;
+  --ink-850: #111114;
+  --ink-800: #17171b;
+  --ink-700: #232328;
+  --white: #fff;
+  --text-1: #f5f5f7;
+  --text-2: rgb(245 245 247 / 0.66);
+  --text-3: rgb(245 245 247 / 0.42);
+  --hairline: rgb(255 255 255 / 0.1);
+  --hairline-strong: rgb(255 255 255 / 0.18);
+
+  /* Material de vidro */
+  --glass-fill: rgb(255 255 255 / 0.08);
+  --glass-fill-hover: rgb(255 255 255 / 0.14);
+  --glass-fill-strong: rgb(30 30 34 / 0.62);
+  --glass-blur: 28px;
+  --glass-rim: rgb(255 255 255 / 0.22);
+  --glass-shadow: 0 10px 40px rgb(0 0 0 / 0.45), 0 2px 8px rgb(0 0 0 / 0.25);
+
+  /* Tipografia */
+  --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter Variable', 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter Variable', 'Inter', system-ui, sans-serif;
+
+  /* Espaço e forma */
+  --gutter: clamp(16px, 4.2vw, 72px);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 28px;
+  --nav-h: 72px;
+  /* quanto a primeira prateleira sobe por cima do hero */
+  --hero-overlap: clamp(56px, 7vw, 96px);
+
+  /* Movimento: curvas sem overshoot (amortecimento crítico) */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
+  --dur-fast: 160ms;
+  --dur-med: 320ms;
+  --dur-slow: 640ms;
+}
+
+@media (max-width: 720px) {
+  :root {
+    --nav-h: 60px;
+    --radius-md: 10px;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --glass-fill: rgb(40 40 44 / 0.96);
+    --glass-fill-hover: rgb(56 56 60 / 0.98);
+    --glass-fill-strong: rgb(24 24 28 / 0.98);
+    --glass-blur: 0px;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --text-2: rgb(245 245 247 / 0.86);
+    --text-3: rgb(245 245 247 / 0.7);
+    --hairline: rgb(255 255 255 / 0.32);
+    --glass-rim: rgb(255 255 255 / 0.6);
+  }
+}

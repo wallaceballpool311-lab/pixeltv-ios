@@ -1,0 +1,11 @@
+node_modules/
+dist/
+ios/
+android/
+deploy/
+secrets/
+.env
+.env.*
+*.log
+.DS_Store
+Thumbs.db

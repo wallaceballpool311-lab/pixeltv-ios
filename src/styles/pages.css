@@ -1,0 +1,302 @@
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 100;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--white);
+  color: #000;
+  font-weight: 600;
+  translate: 0 -150%;
+  transition: translate var(--dur-med) var(--ease-out);
+}
+
+.skip-link:focus-visible {
+  translate: 0 0;
+}
+
+/* ---------- Início ---------- */
+
+/* A primeira prateleira sobe por cima do véu do hero, como na Apple TV. */
+.home__shelves {
+  position: relative;
+  z-index: 2;
+  margin-top: calc(-1 * var(--hero-overlap));
+}
+
+.home__shelves > :first-child .shelf,
+.home__shelves > .shelf:first-child {
+  margin-top: 0;
+}
+
+/* ---------- Rodapé ---------- */
+
+.footer {
+  display: grid;
+  gap: 6px;
+  padding-top: 72px;
+  padding-bottom: calc(48px + env(safe-area-inset-bottom));
+}
+
+.footer__rule {
+  height: 1px;
+  background: var(--hairline);
+  margin-bottom: 18px;
+}
+
+@media (max-width: 720px) {
+  .footer {
+    padding-bottom: calc(110px + env(safe-area-inset-bottom));
+  }
+}
+
+/* ---------- Coleções (card) ---------- */
+
+.card--collection .card__art {
+  aspect-ratio: 16 / 9;
+}
+
+.card__shade--strong {
+  background:
+    linear-gradient(to top, rgb(0 0 0 / 0.85) 0%, rgb(0 0 0 / 0.35) 50%, transparent 80%),
+    linear-gradient(to left, rgb(0 0 0 / 0.35), transparent 40%);
+}
+
+.collection-card__body {
+  position: absolute;
+  left: 7%;
+  bottom: 9%;
+  right: 7%;
+}
+
+.collection-card__name {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.4vw, 1.3rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+.collection-card__stack {
+  position: absolute;
+  right: 7%;
+  top: 10%;
+  display: flex;
+}
+
+.collection-card__stack img {
+  width: clamp(34px, 3.4vw, 52px);
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 5px;
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.2),
+    0 6px 16px rgb(0 0 0 / 0.6);
+  transition: transform 520ms var(--ease-spring);
+}
+
+.collection-card__stack img + img {
+  margin-left: -14%;
+}
+
+.collection-card__stack img:nth-child(1) {
+  transform: rotate(-6deg) translateY(2px);
+}
+.collection-card__stack img:nth-child(3) {
+  transform: rotate(6deg) translateY(2px);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card--collection:hover .collection-card__stack img:nth-child(1) {
+    transform: rotate(-12deg) translate(-6px, 0);
+  }
+  .card--collection:hover .collection-card__stack img:nth-child(3) {
+    transform: rotate(12deg) translate(6px, 0);
+  }
+}
+
+/* ---------- Filmes ---------- */
+
+.browse__head {
+  display: grid;
+  gap: 6px;
+  padding-top: clamp(28px, 4vw, 56px);
+  padding-bottom: 22px;
+}
+
+.browse__filters {
+  position: sticky;
+  top: calc(var(--nav-h) + 4px);
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 0 var(--gutter) 22px;
+  pointer-events: none;
+}
+
+.browse__filters > * {
+  pointer-events: auto;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 2px;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 5px;
+  border-radius: 999px;
+}
+
+.filter-bar--compact {
+  flex: none;
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 46px;
+  padding: 0 14px 0 6px;
+  border-radius: 999px;
+  color: var(--text-2);
+  transition: color var(--dur-med) var(--ease-out);
+}
+
+.toggle:hover,
+.toggle[aria-checked='true'] {
+  color: var(--text-1);
+}
+
+.toggle__track {
+  position: relative;
+  width: 46px;
+  height: 28px;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.16);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.08);
+  transition: background-color var(--dur-med) var(--ease-out);
+}
+
+.toggle__thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--white);
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.35);
+  transition:
+    translate var(--dur-med) var(--ease-spring),
+    background-color var(--dur-med) var(--ease-out);
+}
+
+.toggle[aria-checked='true'] .toggle__track {
+  background: var(--white);
+}
+
+.toggle[aria-checked='true'] .toggle__thumb {
+  translate: 18px 0;
+  background: #000;
+}
+
+.poster-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(clamp(132px, 13vw, 190px), 1fr));
+  gap: clamp(20px, 2vw, 32px) clamp(12px, 1.25vw, 20px);
+  margin: 0;
+  list-style: none;
+}
+
+.poster-grid li {
+  min-width: 0;
+}
+
+.browse__empty {
+  padding-block: 48px;
+}
+
+/* ---------- Coleções ---------- */
+
+.collection {
+  scroll-margin-top: calc(var(--nav-h) + 12px);
+  margin-top: clamp(28px, 4vw, 56px);
+}
+
+.collection__art {
+  position: relative;
+  aspect-ratio: 21 / 7;
+  min-height: 200px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--ink-850);
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.06);
+}
+
+.collection__art img,
+.collection__art .art-fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 25%;
+}
+
+.collection__shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, rgb(0 0 0 / 0.82) 0%, rgb(0 0 0 / 0.4) 45%, transparent 75%),
+    linear-gradient(to top, rgb(0 0 0 / 0.5), transparent 50%);
+}
+
+.collection__copy {
+  position: absolute;
+  left: clamp(20px, 4vw, 48px);
+  bottom: clamp(20px, 3.4vw, 40px);
+  right: 40%;
+  display: grid;
+  gap: 6px;
+}
+
+.collection__shelf {
+  margin-top: 20px;
+}
+
+.collection__shelf .shelf__head {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .collection__art {
+    aspect-ratio: 16 / 10;
+  }
+
+  .collection__copy {
+    right: 8%;
+  }
+
+  .filter-bar--compact {
+    max-width: 100%;
+  }
+}
+
+/* ---------- 404 ---------- */
+
+.not-found {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: 16px;
+}
+
+/* estúdios: segunda fileira de chips, rola junto com a página (a de gêneros fica presa no topo) */
+.browse__studios {
+  display: flex;
+  padding: 0 var(--gutter) 22px;
+}

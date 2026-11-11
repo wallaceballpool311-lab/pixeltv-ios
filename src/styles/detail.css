@@ -1,0 +1,582 @@
+/* ---------- Topo ---------- */
+
+.detail-hero {
+  position: relative;
+  min-height: min(100svh, max(640px, 62vw));
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.detail-hero__media {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 0;
+  will-change: transform;
+}
+
+.detail-hero__img {
+  position: absolute;
+  inset: 0;
+}
+
+.detail-hero__img img,
+.detail-hero__img .art-fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 60% 20%;
+}
+
+.detail-hero__scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to top, #000 0%, rgb(0 0 0 / 0.9) 14%, rgb(0 0 0 / 0.5) 40%, rgb(0 0 0 / 0.1) 66%, transparent 80%),
+    linear-gradient(to right, rgb(0 0 0 / 0.78) 0%, rgb(0 0 0 / 0.45) 32%, transparent 62%),
+    linear-gradient(to bottom, rgb(0 0 0 / 0.55) 0%, transparent 20%);
+}
+
+.detail-back {
+  position: absolute;
+  z-index: 3;
+  top: calc(var(--nav-h) + 6px);
+  left: var(--gutter);
+  padding-left: 12px;
+}
+
+.detail-hero__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 640px) auto;
+  justify-content: space-between;
+  align-items: end;
+  gap: 32px;
+  padding-top: calc(var(--nav-h) + 80px);
+  padding-bottom: clamp(40px, 6vh, 72px);
+}
+
+.detail-hero__copy {
+  display: grid;
+  justify-items: start;
+  gap: 14px;
+}
+
+.detail-hero__logo {
+  display: flex;
+  align-items: flex-end;
+  min-height: clamp(64px, 9vw, 150px);
+  margin-bottom: 4px;
+}
+
+.detail-hero__tagline {
+  color: var(--text-1);
+  font-weight: 600;
+  text-wrap: balance;
+}
+
+.detail-hero__overview {
+  color: var(--text-2);
+  max-width: 36em;
+  text-wrap: pretty;
+}
+
+.detail-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.detail-hero__credits {
+  display: grid;
+  gap: 4px;
+  margin: 8px 0 0;
+}
+
+.detail-hero__credits div {
+  display: flex;
+  gap: 8px;
+}
+
+.detail-hero__credits dt {
+  color: var(--text-3);
+  flex: none;
+}
+
+.detail-hero__credits dd {
+  margin: 0;
+  color: var(--text-2);
+}
+
+/* ---------- Nota ---------- */
+
+.score {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 22px 16px 16px;
+  border-radius: var(--radius-xl);
+}
+
+.score__ring {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  flex: none;
+}
+
+.score__ring svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.score__track,
+.score__value {
+  fill: none;
+  stroke-width: 5;
+}
+
+.score__track {
+  stroke: rgb(255 255 255 / 0.14);
+}
+
+.score__value {
+  stroke: var(--white);
+  stroke-linecap: round;
+}
+
+.score__number {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.score__text {
+  display: grid;
+  gap: 2px;
+}
+
+.score__text .t-headline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.score__text svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* ---------- Abas de seção ---------- */
+
+.section-tabs__sentinel {
+  height: 1px;
+}
+
+.section-tabs {
+  position: sticky;
+  top: calc(var(--nav-h) + 4px);
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  padding: 0 var(--gutter);
+  margin-top: 8px;
+  pointer-events: none;
+}
+
+.section-tabs__bar {
+  display: flex;
+  gap: 2px;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 5px;
+  border-radius: 999px;
+  pointer-events: auto;
+  transition: box-shadow var(--dur-med) var(--ease-out);
+}
+
+.section-tabs:not(.is-stuck) .section-tabs__bar {
+  --glass-fill: rgb(255 255 255 / 0.05);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12);
+}
+
+.filter-chip {
+  position: relative;
+  flex: none;
+}
+
+.filter-chip[aria-pressed='true'],
+.filter-chip[aria-current='true'] {
+  background: transparent;
+  color: #000;
+}
+
+.filter-chip__lens {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--white);
+  box-shadow:
+    0 4px 14px rgb(0 0 0 / 0.3),
+    inset 0 -2px 4px rgb(0 0 0 / 0.08);
+}
+
+.filter-chip__label {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- Corpo ---------- */
+
+.detail__body {
+  padding-bottom: 40px;
+}
+
+.detail__section {
+  scroll-margin-top: calc(var(--nav-h) + 72px);
+}
+
+.detail__section.wrap {
+  margin-top: clamp(40px, 4.6vw, 64px);
+}
+
+.detail__h2 {
+  margin-bottom: 18px;
+}
+
+/* Pessoas */
+.person {
+  margin: 0;
+  min-width: 0;
+  text-align: center;
+}
+
+.person__photo {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--ink-700), var(--ink-850));
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.08),
+    0 8px 24px rgb(0 0 0 / 0.4);
+  display: grid;
+  place-items: center;
+  transition: transform 520ms var(--ease-spring);
+}
+
+.person__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.person__photo span {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: var(--text-2);
+}
+
+.person:hover .person__photo {
+  transform: scale(1.04);
+}
+
+.person figcaption {
+  margin-top: 10px;
+}
+
+.person__name {
+  font-weight: 600;
+  color: var(--text-1);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.person__role {
+  margin-top: 2px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Equipe */
+.crew-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 22px 32px;
+  margin: 0;
+}
+
+.crew-grid__item dd {
+  margin: 4px 0 0;
+  color: var(--text-1);
+}
+
+/* Fichas */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+  gap: 20px;
+}
+
+.facts__group {
+  padding: 22px 24px 10px;
+  border-radius: var(--radius-lg);
+  background: var(--ink-900);
+  box-shadow: inset 0 0 0 1px var(--hairline);
+}
+
+.facts__title {
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+.facts dl {
+  margin: 0;
+}
+
+.fact {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 16px;
+  padding: 12px 0;
+  border-top: 1px solid var(--hairline);
+  font-size: 0.9375rem;
+  line-height: 1.4;
+}
+
+.fact:first-child {
+  border-top: 0;
+}
+
+.fact dt {
+  color: var(--text-3);
+}
+
+.fact dd {
+  margin: 0;
+  color: var(--text-1);
+}
+
+.ext-links {
+  display: flex;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+/* Imagens */
+.still {
+  display: block;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--ink-850);
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.06);
+  transition: transform 520ms var(--ease-spring);
+}
+
+.still img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .still:hover {
+    transform: scale(1.03);
+  }
+}
+
+.is-current .card__art {
+  box-shadow:
+    0 0 0 2px var(--white),
+    0 6px 20px rgb(0 0 0 / 0.35);
+}
+
+/* ---------- Transição compartilhada (card → página) ---------- */
+
+::view-transition-group(movie-backdrop),
+::view-transition-group(movie-logo) {
+  animation-duration: 560ms;
+  animation-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+::view-transition-image-pair(movie-backdrop) {
+  overflow: clip;
+}
+
+::view-transition-old(movie-backdrop),
+::view-transition-new(movie-backdrop) {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  animation-duration: 420ms;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 280ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 1ms !important;
+  }
+}
+
+/* ---------- Celular ---------- */
+
+@media (max-width: 900px) {
+  .detail-hero__content {
+    grid-template-columns: 1fr;
+  }
+
+  .score {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 720px) {
+  .detail-hero {
+    min-height: 92svh;
+  }
+
+  .detail-hero__scrim {
+    background:
+      linear-gradient(to top, #000 0%, rgb(0 0 0 / 0.92) 30%, rgb(0 0 0 / 0.5) 55%, transparent 76%),
+      linear-gradient(to bottom, rgb(0 0 0 / 0.6) 0%, transparent 18%);
+  }
+
+  .detail-hero__content {
+    padding-top: calc(var(--nav-h) + 160px);
+  }
+
+  .detail-hero__copy {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .detail-hero__logo {
+    justify-content: center;
+  }
+
+  .detail-hero .meta-line {
+    justify-content: center;
+  }
+
+  .detail-hero__actions {
+    justify-content: center;
+  }
+
+  .detail-hero__actions .btn--primary {
+    flex: 1 1 100%;
+  }
+
+  .detail-hero__credits {
+    justify-items: center;
+  }
+
+  .score {
+    justify-self: center;
+  }
+
+  .fact {
+    grid-template-columns: 112px 1fr;
+  }
+
+  .facts__group {
+    padding: 18px 18px 6px;
+  }
+
+  .detail__body {
+    padding-bottom: 96px;
+  }
+}
+
+/* ---------- Episódios (página da série) ---------- */
+
+/* temporadas logo abaixo do título, à esquerda: no controle da TV, "para cima" a partir dos episódios cai nelas */
+.episodes .shelf__head {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.episodes__seasons {
+  max-width: 100%;
+}
+
+.episode {
+  width: 100%;
+  text-align: left;
+}
+
+.episode__play {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  color: #000;
+  background: rgb(255 255 255 / 0.92);
+  opacity: 0;
+  scale: 0.85;
+  transition:
+    opacity var(--dur-med) var(--ease-out),
+    scale var(--dur-med) var(--ease-spring);
+}
+
+.episode__play svg {
+  width: 20px;
+  height: 20px;
+  margin-left: 2px;
+}
+
+.episode:focus-visible .episode__play {
+  opacity: 1;
+  scale: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .episode:hover .episode__play {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.episode__meta {
+  margin-top: 2px;
+}
+
+.episode__overview {
+  margin-top: 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-wrap: pretty;
+}

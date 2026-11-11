@@ -1,0 +1,14 @@
+{
+  "appId": "tv.pixeltv.app",
+  "appName": "PixelTV",
+  "webDir": "dist",
+  "server": {
+    "url": "https://pixeltv.discloud.dev",
+    "cleartext": true
+  },
+  "ios": {
+    "contentInset": "always",
+    "allowsLinkPreview": false,
+    "scrollEnabled": true
+  }
+}

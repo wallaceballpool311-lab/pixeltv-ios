@@ -1,0 +1,195 @@
+/*
+  Modo TV (app Android ou ?tv=1): o controle remoto manda setas e "OK".
+  O foco precisa ser óbvio a 3 metros de distância, e os efeitos caros saem:
+  desfoque de fundo em GPU de TV derruba a fluidez.
+*/
+
+.tv {
+  scroll-behavior: smooth;
+  cursor: none;
+}
+
+.tv .glass,
+.tv .glass--thick,
+.tv .nav::before,
+.tv .badge--glass,
+.tv .search__scrim {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+.tv .glass {
+  background: rgb(38 38 42 / 0.88);
+}
+
+.tv .glass--thick {
+  background: rgb(26 26 30 / 0.96);
+}
+
+.tv .nav::before {
+  background: linear-gradient(to bottom, rgb(0 0 0 / 0.92), rgb(0 0 0 / 0.6) 60%, transparent);
+  /* o degradê já some sozinho: a máscara só custava uma camada a mais em toda rolagem */
+  -webkit-mask: none;
+  mask: none;
+}
+
+.tv .card__shine,
+.tv .shelf__arrow,
+.tv .skip-link,
+.tv .ext-links,
+.tv .tabbar {
+  display: none !important;
+}
+
+/* foco: anel branco grosso + leve crescimento, em tudo que recebe foco */
+.tv :focus {
+  outline: none;
+}
+
+.tv .btn:focus-visible,
+.tv .chip:focus-visible,
+.tv .nav__tab:focus-visible,
+.tv .brand:focus-visible,
+.tv .shelf__title-link:focus-visible,
+.tv .menu__item:focus-visible,
+.tv .search__close:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px #000,
+    0 0 0 6px #fff;
+  transform: scale(1.06);
+}
+
+.tv .btn--glass:focus-visible,
+.tv .chip:focus-visible,
+.tv .nav__tab:focus-visible {
+  background: #fff;
+  color: #000;
+}
+
+/*
+  Cards na TV: cada um era uma camada de GPU própria (translateZ) com sombra de 50–60 px de desfoque
+  animada por meio segundo a cada passo do controle. Agora: sem camada fixa (o navegador cria só
+  durante o crescimento), sombra só no anel, e só o tamanho anima, rápido.
+*/
+.tv .card__art {
+  transform: none;
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.06);
+  transition: transform 180ms var(--ease-out);
+}
+
+.tv .card:focus-visible .card__art {
+  transform: scale(1.08);
+  box-shadow: 0 0 0 4px #fff;
+}
+
+.tv .card:active .card__art {
+  transform: scale(1.04);
+}
+
+/* logo branco sem a sombra desfocada: centenas de filtros com desfoque pesam a cada rolagem */
+.tv .title-logo {
+  filter: brightness(0) invert(1);
+}
+
+/* imagens aparecem mais rápido; o fade longo deixava várias animações rodando juntas na rolagem */
+.tv .img-fade {
+  transition-duration: 200ms;
+}
+
+/* botões e abas: só o tamanho anima (sombra e cor mudam de uma vez, sem repintar a cada quadro) */
+.tv .btn,
+.tv .chip,
+.tv .nav__tab {
+  transition: transform 140ms var(--ease-out);
+}
+
+.tv .card:focus-visible .card__caption,
+.tv .card:focus-visible .card__title {
+  color: #fff;
+}
+
+.tv .hero__dot:focus-visible {
+  box-shadow: 0 0 0 3px #fff;
+}
+
+/* prateleiras: mais respiro para o card crescer sem cortar */
+.tv .shelf__track {
+  padding-block: 22px 28px;
+  margin-block: -22px -28px;
+  scroll-snap-type: none;
+}
+
+/* o carrossel do topo não passa sozinho enquanto alguém navega pelos botões */
+.tv .hero__img {
+  animation: none;
+}
+
+/* aviso de versão nova para quem ainda está no app 1.0 (WebView) */
+.tv-update {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: var(--gutter);
+  background: rgb(0 0 0 / 0.82);
+}
+
+.tv-update__card {
+  width: min(680px, 100%);
+  padding: 40px 44px;
+  border-radius: var(--radius-xl);
+}
+
+.tv-update__eyebrow {
+  margin: 0 0 10px;
+  color: var(--text-3);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.tv-update__title {
+  margin: 0 0 14px;
+  font-family: var(--font-display);
+  font-size: 34px;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--text-1);
+}
+
+.tv-update__text {
+  margin: 0 0 22px;
+  color: var(--text-2);
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.tv-update__steps {
+  margin: 0 0 28px;
+  padding-left: 22px;
+  display: grid;
+  gap: 10px;
+  color: var(--text-1);
+  font-size: 19px;
+  line-height: 1.4;
+}
+
+.tv-update__steps strong {
+  color: var(--white);
+}
+
+.tv-update__url {
+  padding: 2px 10px;
+  border-radius: var(--radius-sm);
+  background: rgb(255 255 255 / 0.12);
+  font-variant-numeric: tabular-nums;
+}
+
+.tv-update__note {
+  margin: -8px 0 26px;
+  color: var(--text-2);
+  font-size: 16px;
+  line-height: 1.5;
+}
